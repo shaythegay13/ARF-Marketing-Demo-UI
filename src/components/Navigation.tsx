@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ShieldCheck, Menu, X } from 'lucide-react';
 export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,7 +40,7 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden p-2 text-slate-600" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button type="button" className="md:hidden p-2 text-slate-600" aria-expanded={isMobileMenuOpen} aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>

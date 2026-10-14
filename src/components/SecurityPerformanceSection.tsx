@@ -1,7 +1,6 @@
-import React from 'react';
 import { Activity, Clock, TrendingUp, Zap, CheckCircle, AlertTriangle } from 'lucide-react';
 export function SecurityPerformanceSection() {
-  return <section id="metrics" className="py-24 bg-slate-900 text-white">
+  return <section id="security" className="py-24 bg-slate-900 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -87,22 +86,26 @@ export function SecurityPerformanceSection() {
               name: 'Detective Agent',
               accuracy: 94,
               latency: '12ms',
-              color: 'blue'
+              textClass: 'text-blue-400',
+              barClass: 'bg-blue-500'
             }, {
               name: 'Diagnostic Agent',
               accuracy: 91,
               latency: '18ms',
-              color: 'teal'
+              textClass: 'text-teal-400',
+              barClass: 'bg-teal-500'
             }, {
               name: 'Predictive Agent',
               accuracy: 87,
               latency: '24ms',
-              color: 'indigo'
+              textClass: 'text-indigo-400',
+              barClass: 'bg-indigo-500'
             }, {
               name: 'Policy Engine',
               accuracy: 96,
               latency: '8ms',
-              color: 'amber'
+              textClass: 'text-amber-400',
+              barClass: 'bg-amber-500'
             }].map(agent => <div key={agent.name}>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-slate-300">
@@ -112,13 +115,13 @@ export function SecurityPerformanceSection() {
                       <span className="text-xs text-slate-500">
                         {agent.latency}
                       </span>
-                      <span className={`text-sm font-bold text-${agent.color}-400`}>
+                      <span className={`text-sm font-bold ${agent.textClass}`}>
                         {agent.accuracy}%
                       </span>
                     </div>
                   </div>
                   <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                    <div className={`h-full bg-${agent.color}-500 rounded-full transition-all duration-500`} style={{
+                    <div className={`h-full ${agent.barClass} rounded-full transition-all duration-500`} style={{
                   width: `${agent.accuracy}%`
                 }}></div>
                   </div>
@@ -134,36 +137,46 @@ export function SecurityPerformanceSection() {
               service: 'API Gateway',
               status: 'Operational',
               uptime: '99.99%',
-              statusColor: 'green'
+              dotClass: 'bg-green-500',
+              statusClass: 'text-green-400',
+              pulse: false
             }, {
               service: 'Payment Service',
               status: 'Operational',
               uptime: '99.95%',
-              statusColor: 'green'
+              dotClass: 'bg-green-500',
+              statusClass: 'text-green-400',
+              pulse: false
             }, {
               service: 'Database Cluster',
               status: 'Operational',
               uptime: '99.98%',
-              statusColor: 'green'
+              dotClass: 'bg-green-500',
+              statusClass: 'text-green-400',
+              pulse: false
             }, {
               service: 'FAISS Vector Store',
               status: 'Operational',
               uptime: '100%',
-              statusColor: 'green'
+              dotClass: 'bg-green-500',
+              statusClass: 'text-green-400',
+              pulse: false
             }, {
               service: 'Event Bus',
               status: 'Degraded',
               uptime: '99.87%',
-              statusColor: 'yellow'
+              dotClass: 'bg-yellow-500',
+              statusClass: 'text-yellow-400',
+              pulse: true
             }].map(item => <div key={item.service} className="flex items-center justify-between p-3 rounded-lg bg-slate-700/50">
                   <div className="flex items-center gap-3">
-                    <div className={`h-2 w-2 rounded-full bg-${item.statusColor}-500 ${item.statusColor === 'green' ? '' : 'animate-pulse'}`}></div>
+                    <div className={`h-2 w-2 rounded-full ${item.dotClass} ${item.pulse ? 'animate-pulse' : ''}`}></div>
                     <span className="text-sm font-medium text-slate-200">
                       {item.service}
                     </span>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className={`text-xs font-medium ${item.statusColor === 'green' ? 'text-green-400' : 'text-yellow-400'}`}>
+                    <span className={`text-xs font-medium ${item.statusClass}`}>
                       {item.status}
                     </span>
                     <span className="text-xs text-slate-500">
