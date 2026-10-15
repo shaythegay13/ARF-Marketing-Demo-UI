@@ -1,4 +1,3 @@
-import React from 'react';
 import { Github, ShieldCheck } from 'lucide-react';
 export function Footer() {
   return <footer className="border-t border-slate-200 bg-slate-50 py-12">
@@ -14,7 +13,7 @@ export function Footer() {
           </div>
 
           <div className="flex gap-4">
-            <a href="#" className="text-slate-400 hover:text-slate-900">
+            <a href="https://github.com/shaythegay13/ARF-Marketing-Demo-UI" className="text-slate-400 hover:text-slate-900" aria-label="GitHub repository">
               <Github className="h-5 w-5" />
             </a>
           </div>

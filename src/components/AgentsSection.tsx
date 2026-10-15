@@ -1,5 +1,5 @@
-import React, { useState, Component } from 'react';
-import { Search, Stethoscope, TrendingUp, Terminal, Shield, Play, AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Stethoscope, TrendingUp, Terminal, Shield, Play } from 'lucide-react';
 export function AgentsSection() {
   const [activeAgent, setActiveAgent] = useState<string | null>(null);
   const [agentOutputs, setAgentOutputs] = useState<{
@@ -39,7 +39,7 @@ export function AgentsSection() {
     name: 'Detective Agent',
     role: 'Event Monitoring',
     icon: Search,
-    color: 'blue',
+    iconWrapClass: 'bg-blue-50 text-blue-600',
     description: 'Continuously monitors event streams and logs, filtering noise to identify potential anomalies in real-time.',
     action: 'Scan Events'
   }, {
@@ -47,7 +47,7 @@ export function AgentsSection() {
     name: 'Diagnostic Agent',
     role: 'Root Cause Analysis',
     icon: Stethoscope,
-    color: 'teal',
+    iconWrapClass: 'bg-teal-50 text-teal-600',
     description: 'Analyzes alerts from the Detective, correlating them with system state to hypothesize root causes.',
     action: 'Analyze Root Cause'
   }, {
@@ -55,7 +55,7 @@ export function AgentsSection() {
     name: 'Predictive Agent',
     role: 'Trend Forecasting',
     icon: TrendingUp,
-    color: 'indigo',
+    iconWrapClass: 'bg-indigo-50 text-indigo-600',
     description: 'Looks at historical data and current trajectories to forecast potential cascading failures before they happen.',
     action: 'Predict Trends'
   }];
@@ -64,7 +64,6 @@ export function AgentsSection() {
     role: 'Policy-Based Self Healing',
     icon: Shield,
     status: 'Evaluating policies...',
-    color: 'amber',
     description: 'Assesses agent outputs against 5 core rules to determine appropriate recovery actions and calculate business impact.',
     rules: ['High Latency Restart', 'Cascading Failures', 'Resource Exhaustion', 'Moderate Performance', 'Critical Failures']
   };
@@ -85,7 +84,7 @@ export function AgentsSection() {
           {agents.map(agent => <div key={agent.id} className="flex flex-col rounded-2xl border border-slate-200 bg-white shadow-sm">
               <div className="p-6">
                 <div className="mb-6 flex items-center justify-between">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-${agent.color}-50 text-${agent.color}-600`}>
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${agent.iconWrapClass}`}>
                     <agent.icon className="h-6 w-6" />
                   </div>
                   <button onClick={() => runAgent(agent.id)} disabled={activeAgent !== null} className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${activeAgent === agent.id ? 'bg-slate-200 text-slate-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-500'} disabled:opacity-50`}>
